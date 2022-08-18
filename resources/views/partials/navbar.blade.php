@@ -17,6 +17,13 @@
                     <a class="nav-link {!! ($title == 'Blog') ? 'active': '' !!}" href="/posts">Blog</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {!! ($title == 'Post Categories') ? 'active': '' !!}"
+                        href="/categories">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {!! ($title == 'Users') ? 'active': '' !!}" href="/authors">Authors</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {!! ($title == 'Welcome') ? 'active': '' !!}" href="/welcome">Welcome</a>
                 </li>
                 {{-- <li class="nav-item">

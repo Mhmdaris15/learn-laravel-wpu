@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id'); // user_id is the foreign key in the posts table
+    }
 }
