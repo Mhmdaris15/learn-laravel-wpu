@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="img/laravel-logo.svg">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <!-- Styles -->
     <style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -406,8 +406,8 @@
 </head>
 
 <body class="antialiased">
-    @extends('layouts.main')
-    @section('title', 'Welcome')
+    {{-- @extends('layouts.main') --}}
+    {{-- @section('title', 'Welcome') --}}
     @include('partials.navbar')
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">

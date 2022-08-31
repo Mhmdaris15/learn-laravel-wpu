@@ -30,6 +30,16 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li> --}}
             </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="text-decoration-none nav-link {!! ($title == 'Login') ? 'active': '' !!}" href="/login"><i
+                            class="bi bi-box-arrow-in-left"></i>Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-decoration-none nav-link {!! ($title == 'Register') ? 'active': '' !!}"
+                        href="/register"><i class="bi bi-box-arrow-in-left"></i>Register</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

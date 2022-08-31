@@ -24,7 +24,8 @@
     <a class="text-decoration-none" href="/posts/{{ $post->slug }}">
         <h2 class="d-block m-auto">{{ $post->title }}</h2>
     </a>
-    <h5 class="text-white">Category : <a class="text-decoration-none" href="/categories/{{ $post->category->slug }}">{{
+    <h5 class="text-white">Category : <a class="text-decoration-none"
+            href="/posts?category={{ $post->category->slug }}">{{
             $post->category->name }}</a>
     </h5>
 

@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="card-footer">
-        <a href="/categories/{{ $category->slug }}" class="btn btn-primary">View Category</a>
+        <a href="/posts?category={{ $category->slug }}" class="btn btn-primary">View Category</a>
     </div>
 </div>
 @endforeach

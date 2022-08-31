@@ -19,7 +19,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(mt_rand(3, 10)),
             'slug' => $this->faker->slug(),
             'excerpt' => $this->faker->paragraph(),
-            'content' => $this->faker->paragraph(mt_rand(5, 10)),
+            'content' => collect($this->faker->paragraphs(mt_rand(5, 10)))->map(fn ($paragraph) => "<p class='text-white'>{$paragraph}</p>")->implode("\n"),
             'published_at' => $this->faker->dateTimeBetween('-1 year', '+1 year'),
             'category_id' => mt_rand(1, Category::count()),
             'user_id' => mt_rand(1, User::count()),

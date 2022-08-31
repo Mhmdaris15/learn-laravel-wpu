@@ -8,6 +8,11 @@
 {{-- create card posts --}}
 
 <div class="container">
+    <form class="input-group mb-3 w-50 m-auto">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username"
+            aria-describedby="basic-addon2" name="search" value="{{ request('search') }}">
+        <button class="btn btn-danger" type="submit">Search</button>
+    </form>
     @if ($posts->count())
     <div class="card mb-3 bg-warning rounded">
         <img src="http://source.unsplash.com/1200x400/?{{ $posts[0]->category->slug }}" class="card-img-top p-3 rounded"
@@ -18,7 +23,7 @@
             <p class="d-inline">
                 <small class="text-muted d-inline">
                     By. <a href="/authors/{{ $posts[0]->author->username }}" class="text-decoration-none d-inline">{{
-                        $posts[0]->author->name }}</a> in <a href="/categories/{{ $posts[0]->category->slug }}"
+                        $posts[0]->author->name }}</a> in <a href="/posts?category={{ $posts[0]->category->slug }}"
                         class="text-decoration-none d-inline">{{
                         $posts[0]->category->name }}</a>
                     <p class="text-muted">Last updated {{
@@ -45,7 +50,7 @@
         <h5 class="text-secondary">By : <a class="text-decoration-none" href="/authors/{{ $post->author->username }}">{{
                 $post->author->name }}</a></h5>
         <h5 class="text-white">Category : <a class="text-decoration-none"
-                href="/categories/{{ $post->category->slug }}">{{
+                href="/posts?category={{ $post->category->slug }}">{{
                 $post->category->name }}</a>
         </h5>
 

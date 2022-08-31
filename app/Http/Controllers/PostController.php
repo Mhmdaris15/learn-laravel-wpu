@@ -10,14 +10,16 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('author', 'category')->latest();
-        if (request('search')) {
-            $posts = Post::with('author', 'category')->where('title', 'like', '%' . request('search') . '%')->orWhere('content', 'like', '%' . request('search') . '%');
-        }
+        // $posts = Post::with('author', 'category')->latest();
+
+        // if (request('search')) {
+        //     $posts = Post::with('author', 'category')->where('title', 'like', '%' . request('search') . '%')->orWhere('content', 'like', '%' . request('search') . '%');
+        // }
+
         return view('posts', [
             'title' => 'Blog',
             // 'posts' => Post::with('author', 'category')->latest()->get() // Sort data start with the newest (not Post::all())
-            'posts' => $posts->get()
+            'posts' => Post::with('author', 'category')->latest()->filter(request(['search', 'category']))->paginate(10)
         ]);
     }
 
