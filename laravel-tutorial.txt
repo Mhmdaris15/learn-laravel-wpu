@@ -1,0 +1,128 @@
+Laravel Tutorial
+1. .env = APP_URL
+2. Routing on routes/web.php
+3. Views on resources/views
+4. When create a views, use extension : .blade.php
+5. Put all assets on public/img, public/css, public/js
+6. Blade Templating Engine
+	https://laravel.com/docs/9.x/blade
+7. Extending Layout
+	@yield (taken on layout.main)
+	@section (part that appeared on @yield)
+	@extends (tell browser, that we're using extending layout. it putted on home.blade, about.blade, etc)
+	@include (include a Blade view from within another view) it's used to include partials blade to main blade
+	Or You can create a Component! [https://laravel.com/docs/8.x/blade#components]
+	php artisan make:component Alert => The view will be placed in the resources/views/components directory.
+
+8. Model : php artisan make:model Post (NO)
+9. Put your Data on Post Class. ORM (Every single table on DB, has its own Class/Model)
+10. Create your Data private and static
+11. Create getter method all() to fetch your Private Data, and convert to collection
+12. Create method to find based on $slug
+13. Controller : php artisan make:controller PostController (Basic)
+14. Move your whole Logic rules from Route Closure to PostController class
+15. Create index method as default Parameter, that will be called [PostController:class, 'index'] in the closure place to handle /blog
+16. Create show method, that will be called [PostController:class, 'index'] to handle /blog/{slug}
+17. DotEnv Configuration (Basic, Database)
+18. config/database.php (file for db configuration)
+19. Migration (VCS for DB): php artisan make:migration https://laravel.com/docs/8.x/migrations
+20. Exe the migration
+	php artisan migrate (up method)
+	php artisan migrate:rollback (down method)
+	php artisan migrate:fresh (do both)
+	php artisan migrate:refresh --step=1 (migrate fresh one last migration only)	
+
+21. Migration file is saved on database/migrations/.php
+22. When APP_ENV is set to production, migrate will be asked first for confirmation
+23. Eloquent : ORM. Each DB has a corresponding Model used to interact with that table
+24. Active Record Pattern : Approachment to accesssing Data in a DB
+	- a DB table / view is wrapped into a class
+	- an Object Instance is tied to a single row in the table
+	- a new row table will be added after saving
+25. tinker : Laravel Package to interacting with our Laravel App
+	- php artisan tinker
+	- we use it to interact with our Model
+	- $user = new App\Model\User; or $user = new User;
+	- $user->name = "Muhammad Aris Septanugroho";
+	- $user->email = "muhammadaris1945@gmail.com";
+	- $user->password = bcrypt("1");
+	- $user->save();
+	- $user->all()
+	- $user->first()
+	- $user->find($id) // resulting null if data doesn't exist
+	- $user->findOrFail($id) // resulting error if data doesn't exist
+	- $user->pluck('email') // get all email from data
+	- $post->find(2)->update(['title' => 'the new title'])
+	- $post->where('title', 'the new title')->update(['slug', 'the-new-title'])
+	- $post->where('category_id', 'germany')->get() // get all germany categorized data
+26. User Model will automated created after Migrate
+27. php artisan make:model -m Post (Create model and its migration)
+28. Post Model -> id, string(title), text(excerpt), text(content), timestamp(published_at)nullable, timestamps
+29. timestamp is a data type timestamp. meanwhile timestamps is method for creating updated_at and deleted_at
+30. Post::create([
+	'title' => '',
+	'excerpt' => '',
+	'author' => '',
+	'content' => ''
+]) // You can insert a data with this method. But firstly you need
+31. make fillable variable on Model
+	protected $fillable = ['title', 'slug', 'excerpt', 'author', 'content']
+	OR THE OPPOSITION
+	protected $guarded = ['id'] // it means except 'id' is fillable
+
+32. Implicit Binding : https://laravel.com/docs/9.x/routing#implicit-binding
+33. Create Model Category, with its migration
+	$table->string('name')->unique();
+	$table->string('slug')->unique();
+
+	# posts migration
+	$table->foreignId('category_id');
+
+33. Eloquent Relationship : https://laravel.com/docs/8.x/eloquent-relationships#main-content
+	one to one : belongsTo
+	one to many : hasMany
+34. Seeder : php artisan make:seeder UserSeeder
+35. Factory : use faker Library to make fake data: https://fakerphp.github.io/
+	Configuration : config/app.php -> 'faker_locale' => env('FAKER_LOCALE', 'en_US')
+	.env -> FAKER_LOCALE=id_ID
+36. php artisan make:model Student -mfs (make a model called student along with migration, factory, and seeder)
+	php artisan make:factory PostFactory
+37. fullfill the definition method (it will return fake data) with $this->faker->...
+38. N + 1 Problem : Problem that occured because of too much querying to db repeatedly
+	Reason : Lazy loading
+	Library Clockwork is used for counting laravel runtime (how many query)
+	Solution : Eager Loading 
+		with(['author','category'])
+		or declare protected variable on Model 
+		protected $with = ['author', 'category'];
+	Lazy Eager Loading (when the case is route model binding)
+		load()
+39. Searching Feature : 
+	request('search')
+	$posts->where('title', 'like', "%request('search')%")
+	
+40. Query Scopes : https://laravel.com/docs/9.x/eloquent#query-scopes
+	Local Scope : 
+		Create global method on Model : scopeFilter -> than we use filter() on our Model
+	when() 
+
+41. Pagination : paginate(n) https://laravel.com/docs/9.x/pagination#paginating-query-builder-results
+	$posts->links() => to make pagination page numbers https://laravel.com/docs/9.x/pagination#displaying-pagination-results
+	withQueryString() => to bring the previous URL (so that not gone)
+
+42. Using Bootstrap instead Tailwind : https://laravel.com/docs/9.x/pagination#using-bootstrap
+
+43. CSRF Protection : https://laravel.com/docs/9.x/csrf#main-content
+
+44. Validation : https://laravel.com/docs/8.x/validation#main-content
+Available Validation Rule : https://laravel.com/docs/8.x/validation#available-validation-rules
+
+45. Hashing in Laravel : https://laravel.com/docs/8.x/hashing#main-content
+46. Flashing Data : https://laravel.com/docs/8.x/session#flash-data
+47. Authentication : https://laravel.com/docs/8.x/authentication#main-content
+	Starter Kits:
+		https://laravel.com/docs/8.x/starter-kits#laravel-breeze
+		https://laravel.com/docs/8.x/starter-kits#laravel-jetstream
+
+48. withError() will be caught by @error
+    with() will be caught by session()
