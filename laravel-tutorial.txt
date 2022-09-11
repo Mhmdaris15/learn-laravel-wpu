@@ -126,3 +126,19 @@ Available Validation Rule : https://laravel.com/docs/8.x/validation#available-va
 
 48. withError() will be caught by @error
     with() will be caught by session()
+
+49. Resource Controller : https://laravel.com/docs/8.x/eloquent-resources	
+	=> To using Route Model Binding
+	php artisan make:controller PhotoController --model=Photo --resource
+
+50. Eloquent Sluggable : 
+	https://github.com/cviebrock/eloquent-sluggable#customizeslugengine
+	https://www.yasyaindra.com/2021/11/cara-menggunakan-sluggable-pada-laravel.html
+
+51. Trix Editor : 
+	https://github.com/basecamp/trix
+	https://artisansweb.net/how-to-install-and-use-trix-editor-in-laravel/
+
+52. Redirectiong Named : https://laravel.com/docs/8.x/responses#redirecting-named-routes
+
+53. Loops Blade : https://laravel.com/docs/9.x/blade#loops
