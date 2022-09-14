@@ -8,8 +8,8 @@
         <div class="row">
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2 text-light">Welcome to Your Dashboard! {{ Auth::user()->name }}</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
+                    <h1 class="h2 w-75 text-light">Welcome to Your Dashboard! {{ Auth::user()->name }}</h1>
+                    <div class="btn-toolbar flex-grow-1 mb-2 mb-md-0">
                         <div class="btn-group me-2">
                             <button type="button" class="btn btn-sm btn-secondary">Share</button>
                             <button type="button" class="btn btn-sm btn-secondary">Export</button>
@@ -26,7 +26,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                <div class="table-responsive">
+                <div class="table-responsive col-lg-11">
                     <a href="/dashboard/posts/create" class="btn btn-info">Create New Post</a>
                     <table class="table table-striped table-sm rounded my-2">
                         <thead class="bg-warning rounded">
@@ -42,21 +42,21 @@
                         <tbody class="bg-success">
                         @foreach ($posts as $post)
                             <tr>
-                                <td>{{ $loop->iteration }}}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->slug }}</td>
                                 <td>{{ $post->category->name }}</td>
                                 <td>{{ $post->author->name }}</td>
                                 <td>
                                     <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info text-decoration-none">
-                                        <img src="{{ asset('/feather/eye.svg') }}" alt="Show"> <span data-feather="eye"></span> Show</a>
+                                        <i data-feather="eye"></i> Show</a>
                                     <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning text-decoration-none">
-                                        <img src="{{ asset('/feather/edit.svg') }}" alt="Edit"> Edit</a>
+                                        <i data-feather="edit"></i> Edit</a>
                                     <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline-block">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="badge bg-danger border-0 d-inline-block">
-                                            <img src="{{ asset('/feather/trash-2.svg') }}" alt="Delete"> Delete</button>
+                                            <i data-feather="trash-2"></i> Delete</button>
                                     </form>
                                 </td>
                             </tr>

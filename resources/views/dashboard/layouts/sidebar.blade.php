@@ -12,7 +12,7 @@ use \Illuminate\Support\Facades\Request;
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{Request::is('dashboard/posts') ? 'active' : ''}}" href="/dashboard/posts">
+                <a class="nav-link {{Request::is('dashboard/posts*') ? 'active' : ''}}" href="/dashboard/posts">
                     <img src="{{ asset('feather/file-text.svg') }}" alt="">
                     Posts
                 </a>

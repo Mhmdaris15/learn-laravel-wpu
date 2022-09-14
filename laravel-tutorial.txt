@@ -30,7 +30,7 @@ Laravel Tutorial
 	php artisan migrate (up method)
 	php artisan migrate:rollback (down method)
 	php artisan migrate:fresh (do both)
-	php artisan migrate:refresh --step=1 (migrate fresh one last migration only)	
+	php artisan migrate:refresh --step=1 (migrate fresh one last migration only)
 
 21. Migration file is saved on database/migrations/.php
 22. When APP_ENV is set to production, migrate will be asked first for confirmation
@@ -91,20 +91,20 @@ Laravel Tutorial
 38. N + 1 Problem : Problem that occured because of too much querying to db repeatedly
 	Reason : Lazy loading
 	Library Clockwork is used for counting laravel runtime (how many query)
-	Solution : Eager Loading 
+	Solution : Eager Loading
 		with(['author','category'])
-		or declare protected variable on Model 
+		or declare protected variable on Model
 		protected $with = ['author', 'category'];
 	Lazy Eager Loading (when the case is route model binding)
 		load()
-39. Searching Feature : 
+39. Searching Feature :
 	request('search')
 	$posts->where('title', 'like', "%request('search')%")
-	
+
 40. Query Scopes : https://laravel.com/docs/9.x/eloquent#query-scopes
-	Local Scope : 
+	Local Scope :
 		Create global method on Model : scopeFilter -> than we use filter() on our Model
-	when() 
+	when()
 
 41. Pagination : paginate(n) https://laravel.com/docs/9.x/pagination#paginating-query-builder-results
 	$posts->links() => to make pagination page numbers https://laravel.com/docs/9.x/pagination#displaying-pagination-results
@@ -127,18 +127,26 @@ Available Validation Rule : https://laravel.com/docs/8.x/validation#available-va
 48. withError() will be caught by @error
     with() will be caught by session()
 
-49. Resource Controller : https://laravel.com/docs/8.x/eloquent-resources	
+49. Resource Controller : https://laravel.com/docs/8.x/eloquent-resources
 	=> To using Route Model Binding
 	php artisan make:controller PhotoController --model=Photo --resource
 
-50. Eloquent Sluggable : 
+50. Eloquent Sluggable :
 	https://github.com/cviebrock/eloquent-sluggable#customizeslugengine
 	https://www.yasyaindra.com/2021/11/cara-menggunakan-sluggable-pada-laravel.html
 
-51. Trix Editor : 
+51. Trix Editor :
 	https://github.com/basecamp/trix
 	https://artisansweb.net/how-to-install-and-use-trix-editor-in-laravel/
 
-52. Redirectiong Named : https://laravel.com/docs/8.x/responses#redirecting-named-routes
-
+52. Redirecting Named : https://laravel.com/docs/8.x/responses#redirecting-named-routes
 53. Loops Blade : https://laravel.com/docs/9.x/blade#loops
+54. String Helpers : https://laravel.com/docs/9.x/helpers#method-str-limit
+55. https://docs.feathersjs.com/guides/ (FeathersJS)
+56. https://github.com/feathericons/feather (Feather Icons)
+57. Listing All Routes : php artisan route:list
+58. CRUD Laravel 8 : https://appdividend.com/2022/01/26/laravel-8-crud/
+59. ngrok : https://dashboard.ngrok.com/get-started/setup
+	https://ngrok.com/docs
+60. Tons of Laravel Tutorial : https://www.tutsmake.com/category/laravel-tutorial/
+61. File Upload on Laravel 8 : https://www.tutsmake.com/laravel-8-file-upload-tutorial/

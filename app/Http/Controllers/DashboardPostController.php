@@ -7,6 +7,7 @@ use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
 
 
 class DashboardPostController extends Controller
@@ -45,19 +46,19 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-//        return $request->all();
         $request->validate([
-            'title' => 'required',
-            'category' => 'required',
-            'content' => 'required',
+            'title' => 'required|max:255',
+            'slug' => 'required|unique:posts',
+            'category' => 'required|exists:categories,id',
+            'content' => 'required'
         ]);
 
         Post::create([
             'title' => $request->title,
             'slug' => $request->slug,
             'category_id' => $request->category,
-            'content' => $request->content,
-            'excerpt' => substr($request->content, 0, 100),
+            'content' => '<div class="bg-light">' . $request->get('content') . '</div>',
+            'excerpt' => Str::limit(strip_tags($request->get('content')), 200, '...'),
             'published_at' => Carbon::now(),
             'user_id' => auth()->user()->id,
         ]);
@@ -87,7 +88,11 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('dashboard.posts.create', [
+            'title' => 'Edit Post',
+            'post' => $post,
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -100,6 +105,24 @@ class DashboardPostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        $rules = $request->validate([
+            'title' => 'required|max:255',
+            'slug' => ($request->slug != $post->slug) ? 'required|unique:posts' : 'required',
+            'category' => 'required|exists:categories,id',
+            'content' => 'required'
+        ]);
+
+        $post->update([
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'category_id' => $request->category,
+            'content' => '<div class="bg-light">' . $request->get('content') . '</div>',
+            'excerpt' => Str::limit(strip_tags($request->get('content')), 200, '...'),
+            'published_at' => Carbon::now(),
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return redirect('/dashboard/posts')->with('success', 'Data has been updated successfully!');
     }
 
     /**
@@ -111,6 +134,9 @@ class DashboardPostController extends Controller
     public function destroy(Post $post)
     {
         //
+        Post::destroy($post->id);
+
+        return redirect('dashboard/posts')->with('success', 'Post deleted successfully');
     }
 
     public function checkSlug(Request $request)
