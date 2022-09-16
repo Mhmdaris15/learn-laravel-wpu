@@ -46,10 +46,12 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
+//        return $request->file('image')->store('images');
         $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
             'category' => 'required|exists:categories,id',
+            'image' => 'image|mimes:jpg,jpeg,png|max:2048',
             'content' => 'required'
         ]);
 
@@ -59,6 +61,7 @@ class DashboardPostController extends Controller
             'category_id' => $request->category,
             'content' => '<div class="bg-light">' . $request->get('content') . '</div>',
             'excerpt' => Str::limit(strip_tags($request->get('content')), 200, '...'),
+            'image' => $request->file('image') ? $request->file('image')->store('images', 'public') : null,
             'published_at' => Carbon::now(),
             'user_id' => auth()->user()->id,
         ]);

@@ -8,8 +8,8 @@
         <div class="row">
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2 w-75 text-light">Welcome to Your Dashboard! {{ Auth::user()->name }}</h1>
-                    <div class="btn-toolbar flex-grow-1 mb-2 mb-md-0">
+                    <h1 class="h2 d-inline-block w-50 text-light">Welcome to Your Dashboard! {{ Auth::user()->name }}</h1>
+                    <div class="btn-toolbar d-flex flex-shrink-1 mb-2 mb-md-0">
                         <div class="btn-group me-2">
                             <button type="button" class="btn btn-sm btn-secondary">Share</button>
                             <button type="button" class="btn btn-sm btn-secondary">Export</button>
@@ -55,7 +55,7 @@
                                     <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline-block">
                                         @method('delete')
                                         @csrf
-                                        <button type="submit" class="badge bg-danger border-0 d-inline-block">
+                                        <button type="submit" class="badge bg-danger border-0 d-inline-block" onclick="return confirm('Delete this post?')">
                                             <i data-feather="trash-2"></i> Delete</button>
                                     </form>
                                 </td>

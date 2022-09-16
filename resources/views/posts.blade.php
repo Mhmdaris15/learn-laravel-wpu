@@ -19,8 +19,15 @@
     </form>
     @if ($posts->count())
     <div class="card mb-3 bg-warning rounded">
-        <img src="http://source.unsplash.com/1200x400/?{{ $posts[0]->category->slug }}" class="card-img-top p-3 rounded"
-            alt="{{ $posts[0]->category->name }}">
+        @if($posts[0]->image != null)
+        <div style="max-height: 480px; overflow: hidden;">
+            <img src="{{ asset('storage/' . $posts[0]->image) }}" class="mx-auto card-img-top p-3 rounded img-fluid"
+                 alt="{{ $posts[0]->category->name }}">
+        </div>
+        @else
+            <img src="http://source.unsplash.com/1200x400/?{{ $posts[0]->category->slug }}" class="card-img-top p-3 rounded"
+                 alt="{{ $posts[0]->category->name }}">
+        @endif
         <div class="card-body text-center">
             <h3 class="card-title"><a class="text-decoration-none text-dark" href="/posts/{{ $posts[0]->slug }}">{{
                     $posts[0]->title }}</a></h3>
@@ -53,8 +60,13 @@
                     <small>{{ $post->category->name }}</small>
                 </a>
             </div>
+            @if($post->image != null)
+                <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top rounded pt-2"
+                     alt="{{ $post->category->name }}">
+            @else
             <img src="http://source.unsplash.com/800x400/?{{ $post->category->slug }}" class="card-img-top rounded pt-2"
                 alt="{{ $post->category->name }}">
+            @endif
             <div class="card bg-warning border-0">
                 <div class="card-body">
                     <h5 class="card-title"><a class="text-decoration-none text-dark" href="/posts/{{ $post->slug }}">{{

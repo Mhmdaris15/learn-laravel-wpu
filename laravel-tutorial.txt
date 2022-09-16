@@ -150,3 +150,5 @@ Available Validation Rule : https://laravel.com/docs/8.x/validation#available-va
 	https://ngrok.com/docs
 60. Tons of Laravel Tutorial : https://www.tutsmake.com/category/laravel-tutorial/
 61. File Upload on Laravel 8 : https://www.tutsmake.com/laravel-8-file-upload-tutorial/
+https://laravel.com/docs/9.x/filesystem#main-content
+62. Laravel's filesystem configuration file is located at config/filesystems.php

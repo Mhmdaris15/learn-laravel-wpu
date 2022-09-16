@@ -6,7 +6,7 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-4">
 {{--if create form--}}
                 @if (Request::is('dashboard/posts/create'))
-                <form class="col-lg-8" method="post" action="/dashboard/posts">
+                <form class="col-lg-8" method="post" action="/dashboard/posts" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="mb-3">
@@ -39,6 +39,15 @@
                             @endforeach
 
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label text-light">Input your Image here</label>
+                        <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+                        @error('image')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <label for="content" class="form-label text-light">Content</label>
                     <div class="mb-3 bg-light p-2 rounded">

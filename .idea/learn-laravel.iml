@@ -123,6 +123,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/nunomaduro/collision" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cocur/slugify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cviebrock/eloquent-sluggable" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/twbs/bootstrap-icons" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -11,11 +11,15 @@
                     <form class="d-inline-block" action="/dashboard/posts/{{ $post->slug }}" method="POST">
                         @method('delete')
                         @csrf
-                        <button class="btn btn-danger" type="submit"><i data-feather="trash-2"></i> Delete Post </button>
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Delete this post?')"><i data-feather="trash-2"></i> Delete Post </button>
                     </form>
 
-                    <img src="http://source.unsplash.com/1200x400/?{{ $post->category->slug }}" class="card-img-top p-3 pt-0 rounded"
-                         alt="{{ $post->category->name }}">
+                    @if($post->image != null)
+                        <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid" alt="{{ $post->title }}">
+                    @else
+                        <img src="http://source.unsplash.com/1200x400/?{{ $post->category->slug }}" class="card-img-top p-3 rounded"
+                             alt="{{ $post->category->name }}">
+                    @endif
                     <p class="text-light">{!! $post->content !!}</p>
                 </article>
             <main />

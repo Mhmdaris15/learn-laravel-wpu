@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '20ac77caa853b25fcb905f016cb62163483271ab',
+        'reference' => 'e9dfc71dd7b5e42be22cc17111de27712e730eee',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -427,7 +427,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '20ac77caa853b25fcb905f016cb62163483271ab',
+            'reference' => 'e9dfc71dd7b5e42be22cc17111de27712e730eee',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -1278,6 +1278,15 @@
             'install_path' => __DIR__ . '/../tijsverkoyen/css-to-inline-styles',
             'aliases' => array(),
             'reference' => 'da444caae6aca7a19c0c140f68c6182e337d5b1c',
+            'dev_requirement' => false,
+        ),
+        'twbs/bootstrap-icons' => array(
+            'pretty_version' => 'v1.9.1',
+            'version' => '1.9.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../twbs/bootstrap-icons',
+            'aliases' => array(),
+            'reference' => 'f7f6f61194419dcf4447dbe05b78a72601646490',
             'dev_requirement' => false,
         ),
         'vlucas/phpdotenv' => array(

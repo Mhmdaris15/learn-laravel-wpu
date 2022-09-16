@@ -8,7 +8,7 @@
     <title>{{ Str::substr($title, 0, 20) }} | ArisLaravel</title>
     <link rel="shortcut icon" href="{{ asset('img/laravel-logo.svg') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>

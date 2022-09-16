@@ -3,8 +3,12 @@
 @section('content')
 <article class="container mb-5">
     <h1 class="text-light text-center m-5 d-block w-75 m-auto">{{ $post->title }}</h1>
-    <img src="http://source.unsplash.com/1200x400/?{{ $post->category->slug }}" class="card-img-top p-3 rounded"
-        alt="{{ $post->category->name }}">
+    @if($post->image != null)
+    <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid" alt="{{ $post->title }}">
+    @else
+        <img src="http://source.unsplash.com/1200x400/?{{ $post->category->slug }}" class="card-img-top p-3 rounded"
+             alt="{{ $post->category->name }}">
+    @endif
     <small class="fs-6">
         <h4 class="text-secondary">By : <a class="text-decoration-none" href="/authors/{{ $post->author->username }}">{{
                 $post->author->name }}</a></h4>
